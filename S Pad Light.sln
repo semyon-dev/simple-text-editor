@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S Pad Light", "S Pad Light\S Pad Light.csproj", "{29EBF2F8-3E02-453F-8333-9EE7F3DBCB95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29EBF2F8-3E02-453F-8333-9EE7F3DBCB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29EBF2F8-3E02-453F-8333-9EE7F3DBCB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29EBF2F8-3E02-453F-8333-9EE7F3DBCB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29EBF2F8-3E02-453F-8333-9EE7F3DBCB95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE85E9AF-8977-4D91-8377-D6008BCF4E89}
+	EndGlobalSection
+EndGlobal

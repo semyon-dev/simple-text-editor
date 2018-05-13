@@ -1,0 +1,54 @@
+﻿<Window x:Class="S_Pad_Light.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:local="clr-namespace:S_Pad_Light"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="S Pad Light" Height="450" Width="800">
+
+    <DockPanel>
+        <Grid>
+            <Canvas Background="White">
+                <Button x:Name="Save"  Content="Сохранить" IsDefault="True" Click="btn_save_Click" Canvas.Top="10" Canvas.Left="7"  />
+                <Button x:Name="Open"  Content="Открыть"  Click="btn_open_Click" Canvas.Top="10" Canvas.Left="119"   />
+
+                <ListBox Canvas.Top="10" Canvas.Left="227" SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="MaterialDesign" />
+                            <TextBlock Text="Multiple selection" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem x:Name="BoldButton" Selected="BoldText" Unselected="UnBoldText">
+                        <materialDesign:PackIcon Kind="FormatBold"/>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="ItalicButton" Selected="ItalicText" Unselected="UnItalicText" >
+                        <materialDesign:PackIcon Kind="FormatItalic"/>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="UnderlineButton" Selected="UnderlineText" Unselected="UnUnderlineText" >
+                        <materialDesign:PackIcon Kind="FormatUnderline" />
+                    </ListBoxItem>
+                </ListBox>
+
+                <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" Canvas.Top="10" Canvas.Left="400"/>
+                <ComboBox Name="cmbFontFamily" Width="150"  SelectionChanged="cmbFontFamily_SelectionChanged" Canvas.Top="10" Canvas.Left="470"/>
+
+            </Canvas>
+            <DockPanel LastChildFill="True" Margin ="0 50 0 0">
+                <RichTextBox DockPanel.Dock ="Bottom" x:Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0" />
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>

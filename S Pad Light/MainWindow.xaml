@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:local="clr-namespace:S_Pad_Light"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -15,8 +14,8 @@
     <DockPanel>
         <Grid>
             <Canvas Background="White">
-                <Button x:Name="Save"  Content="Сохранить" IsDefault="True" Click="btn_save_Click" Canvas.Top="10" Canvas.Left="7"  />
-                <Button x:Name="Open"  Content="Открыть"  Click="btn_open_Click" Canvas.Top="10" Canvas.Left="119"   />
+                <Button x:Name="Save"  Content="Save" Width="100" Click="btn_save_Click" Canvas.Top="10" Canvas.Left="7"  />
+                <Button x:Name="Open"  Content="Open" Width="100" Click="btn_open_Click" Canvas.Top="10" Canvas.Left="119"   />
 
                 <ListBox Canvas.Top="10" Canvas.Left="227" SelectionMode="Extended" Style="{StaticResource MaterialDesignToolToggleFlatListBox}">
                     <ListBox.ToolTip>

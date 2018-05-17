@@ -13,13 +13,14 @@ namespace S_Pad_Light
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
-            cmbFontSize.ItemsSource = new List<double>() { 12, 14, 16, 18, 20, 22 ,24, 26 , 28 , 36 , 40 ,50 };
+            cmbFontSize.ItemsSource = new List<double>() { 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 40, 50 };
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -78,9 +79,11 @@ namespace S_Pad_Light
 
         private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)   // font size   // размер шрифта 
         {
-            try{
+            try
+            {
                 rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
-            } catch {}
+            }
+            catch { }
         }
         public void UnderlineText(object sender, RoutedEventArgs e)    // underline text  // подчёркивание текста
         {
@@ -116,6 +119,11 @@ namespace S_Pad_Light
         public void UnItalicText(object sender, RoutedEventArgs e)   // без курсива 
         {
             rtbEditor.Selection.ApplyPropertyValue(FontStyleProperty, FontStyles.Normal);
+        }
+
+        public void btn_info_Click(object sender, RoutedEventArgs e)  // info
+        {
+            MessageBox.Show("Creator : Semyon Novikov \nVersion : v1.0.0" , "About" , MessageBoxButton.OK , MessageBoxImage.Information);
         }
     }
 }

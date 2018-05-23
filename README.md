@@ -1,4 +1,4 @@
-# S_Pad_Light
+# S Pad Light
 Material Rich Text Editor
 
 * Support Bold, Italic and Underline text

@@ -8,8 +8,9 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="S Pad Light" Height="450" Width="800">
+        Title="S Pad Light" Height="600" Width="1000">
 
     <DockPanel>
         <Grid>
@@ -35,13 +36,13 @@
                     </ListBoxItem>
                 </ListBox>
 
-                <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" Canvas.Top="10" Canvas.Left="400"/>
-                <ComboBox Name="cmbFontFamily" Width="150"  SelectionChanged="cmbFontFamily_SelectionChanged" Canvas.Top="10" Canvas.Left="470"/>
-                <Button x:Name="about"  Content="About" Width="70" Click="btn_info_Click" Canvas.Top="10" Canvas.Left="700"   />
+                <ComboBox Text="12" Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" Canvas.Top="10" Canvas.Left="400"/>
+                <ComboBox Text="Arial" Name="cmbFontFamily" Width="150"  SelectionChanged="cmbFontFamily_SelectionChanged" Canvas.Top="10" Canvas.Left="470"/>
+                <Button x:Name="about"  Content="About" Width="70" Click="btn_info_Click" Canvas.Top="10" Canvas.Left="640"   />
                 
             </Canvas>
             <DockPanel LastChildFill="True" Margin ="0 50 0 0">
-                <RichTextBox DockPanel.Dock ="Bottom" x:Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" FontSize="14">
+                <RichTextBox DockPanel.Dock ="Bottom" x:Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" FontSize="14" FontFamily="Roboto">
                     <RichTextBox.Resources>
                         <Style TargetType="{x:Type Paragraph}">
                             <Setter Property="Margin" Value="0" />

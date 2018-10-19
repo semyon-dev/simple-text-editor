@@ -11,7 +11,7 @@ using System.Windows.Media;
 namespace S_Pad_Light
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Logic for MainWindow.xaml
     /// </summary>
     
     public partial class MainWindow : Window
@@ -20,7 +20,7 @@ namespace S_Pad_Light
         {
             InitializeComponent();
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
-            cmbFontSize.ItemsSource = new List<double>() { 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 40, 50 };
+            cmbFontSize.ItemsSource = new List<double>() { 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 40, 50};
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -38,46 +38,36 @@ namespace S_Pad_Light
             cmbFontSize.Text = temp.ToString();
         }
 
-        public void btn_open_Click(object sender, RoutedEventArgs e)  //read file     // открытие файла на чтение
+        public void btn_open_Click(object sender, RoutedEventArgs e)  //read file
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Текст (*.txt)|*.txt";
-
-            if (openFileDialog.ShowDialog() == true)
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Текст (*.txt)|*.txt |Rich Text Format (*.rtf)|*.rtf | All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
             {
-                FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
-                StreamReader reader = new StreamReader(fileInfo.Open(FileMode.Open, FileAccess.Read), Encoding.GetEncoding(1251));
-
-                rtbEditor.Document.Blocks.Clear();                                                // очищаем richtxt перед открытием
-                rtbEditor.Document.Blocks.Add(new Paragraph(new Run(reader.ReadToEnd())));        // читаем и заполняем richtxt
-
-                reader.Close();   // close file after reading  //  закрываем файл после чтения
-                return;
+                FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
+                TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                range.Load(fileStream, DataFormats.Rtf);
             }
         }
 
-        public void btn_save_Click(object sender, RoutedEventArgs e)  //save file   // сохранение файла
+        public void btn_save_Click(object sender, RoutedEventArgs e)  //save file
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Текст (*.txt)|*.txt";
-
-            if (saveFileDialog1.ShowDialog() == true)
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Текст (*.txt)|*.txt |Rich Text Format (*.rtf)|*.rtf | All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
             {
-                using (StreamWriter sw = new StreamWriter(saveFileDialog1.OpenFile(), System.Text.Encoding.Default))
-                {
-                    string richText = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd).Text;
-                    sw.Write(richText);
-                    sw.Close();
-                }
+                FileStream fileStream = new FileStream(dlg.FileName, FileMode.Create);
+                TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                range.Save(fileStream, DataFormats.Rtf);
             }
         }
-        private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e) //font   // шрифт
+        private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e) //font
         {
             if (cmbFontFamily.SelectedItem != null)
                 rtbEditor.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, cmbFontFamily.SelectedItem);
         }
 
-        private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)   // font size   // размер шрифта 
+        private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)   // font size
         {
             try
             {
@@ -85,7 +75,7 @@ namespace S_Pad_Light
             }
             catch { }
         }
-        public void UnderlineText(object sender, RoutedEventArgs e)    // underline text  // подчёркивание текста
+        public void UnderlineText(object sender, RoutedEventArgs e)    // underline text
         {
             if (rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty) != TextDecorations.Underline)
                 rtbEditor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
@@ -93,7 +83,7 @@ namespace S_Pad_Light
                 rtbEditor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
         }
 
-        public void UnUnderlineText(object sender, RoutedEventArgs e)    // underline text  // подчёркивание текста
+        public void UnUnderlineText(object sender, RoutedEventArgs e)    // underline text
         {
             if (rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty) != TextDecorations.Underline)
                 rtbEditor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
@@ -101,29 +91,29 @@ namespace S_Pad_Light
                 rtbEditor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
         }
 
-        public void BoldText(object sender, RoutedEventArgs e)  // bold text  // выделение текста  
+        public void BoldText(object sender, RoutedEventArgs e)  // bold text
         {
             rtbEditor.Selection.ApplyPropertyValue(FontWeightProperty, FontWeights.Bold);
         }
 
-        public void UnBoldText(object sender, RoutedEventArgs e)  // unbold text  // отмена выделения текста 
+        public void UnBoldText(object sender, RoutedEventArgs e)  // unbold text
         {
             rtbEditor.Selection.ApplyPropertyValue(FontWeightProperty, FontWeights.Normal);
         }
 
-        public void ItalicText(object sender, RoutedEventArgs e)   // курсив
+        public void ItalicText(object sender, RoutedEventArgs e)   // italics
         {
             rtbEditor.Selection.ApplyPropertyValue(FontStyleProperty, FontStyles.Italic);
         }
 
-        public void UnItalicText(object sender, RoutedEventArgs e)   // без курсива 
+        public void UnItalicText(object sender, RoutedEventArgs e)   // without italics 
         {
             rtbEditor.Selection.ApplyPropertyValue(FontStyleProperty, FontStyles.Normal);
         }
 
         public void btn_info_Click(object sender, RoutedEventArgs e)  // info
         {
-            MessageBox.Show("Creator : Semyon Novikov \nVersion : v1.0.0" , "About" , MessageBoxButton.OK , MessageBoxImage.Information);
+            MessageBox.Show("Creator : Semyon Novikov \nVersion : v1.0.0 \nDonate BTC: 16gzM2uGF8WyfamRrwNQdFCpKBe8b7zvw9", "About" , MessageBoxButton.OK , MessageBoxImage.Information);
         }
     }
 }

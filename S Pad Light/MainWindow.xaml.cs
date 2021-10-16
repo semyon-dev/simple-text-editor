@@ -113,7 +113,7 @@ namespace S_Pad_Light
 
         public void btn_info_Click(object sender, RoutedEventArgs e)  // info
         {
-            MessageBox.Show("Creator : Semyon Novikov \nVersion : v1.0.0 \nDonate BTC: 16gzM2uGF8WyfamRrwNQdFCpKBe8b7zvw9", "About" , MessageBoxButton.OK , MessageBoxImage.Information);
+            MessageBox.Show("Creator : Semyon Novikov \nVersion : v1.0.0", "About" , MessageBoxButton.OK , MessageBoxImage.Information);
         }
     }
 }
